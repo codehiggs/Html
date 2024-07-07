@@ -2,24 +2,23 @@
 [![Say Thanks!](https://img.shields.io/badge/Say-thanks-brightgreen.svg?style=flat-square)](https://saythanks.io/to/jalexiscv)
 [![Donate!](https://img.shields.io/badge/Donate-Paypal-brightgreen.svg?style=flat-square)](https://paypal.me/jalexiscv)
 
-# HTMLTag
+# HTML
 
-## Description
+## Descripción
 
-This is a PHP library that handles the generation of HTML tags, their attributes and content.
+Esta es una biblioteca PHP que maneja la generación de etiquetas HTML, sus atributos y contenido. Es segura, eficiente y
+fácil de usar.
 
-The focus is on security, speed and usability.
+## Requisitos
 
-## Requirements
-
-* PHP 8.0 or higher
+* PHP 8.0 o superior
 * Composer 2.6 for regular usage.
 
-## Installation
+## Instalación
 
 ```composer require Higgs/Html```
 
-## Usage
+## Uso
 
 ```php
 <?php
