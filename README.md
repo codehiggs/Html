@@ -12,8 +12,8 @@ The focus is on security, speed and usability.
 
 ## Requirements
 
-* PHP 5.6 for regular usage.
-* PHP 7 for development and running tests.
+* PHP 8.0 or higher
+* Composer 2.6 for regular usage.
 
 ## Installation
 
@@ -27,23 +27,23 @@ The focus is on security, speed and usability.
 include 'vendor/autoload.php';
 
 // Meta object.
-$meta = \drupol\htmltag\HtmlTag::tag('meta', ['name' => 'author']);
+$meta = \Higgs\Html\HtmlTag::tag('meta', ['name' => 'author']);
 $meta->attr('content', 'pol dellaiera');
 
 // Title object.
-$title = \drupol\htmltag\HtmlTag::tag('h1', ['class' => 'title'], 'Welcome to HTMLTag');
+$title = \Higgs\Html\HtmlTag::tag('h1', ['class' => 'title'], 'Welcome to HTMLTag');
 
 // Paragraph object.
-$paragraph = \drupol\htmltag\HtmlTag::tag('p', ['class' => 'section']);
+$paragraph = \Higgs\Html\HtmlTag::tag('p', ['class' => 'section']);
 $paragraph->attr('class')->append('paragraph');
 $paragraph->content('This library helps you create HTML.');
 
 // Simple footer
-$footer = \drupol\htmltag\HtmlTag::tag('footer', [], 'Thanks for using it!');
+$footer = \Higgs\Html\HtmlTag::tag('footer', [], 'Thanks for using it!');
 
 // Body tag.
 // Add content that can be transformed into strings.
-$body = \drupol\htmltag\HtmlTag::tag('body', [], [$title, $paragraph, $footer]);
+$body = \Higgs\Html\HtmlTag::tag('body', [], [$title, $paragraph, $footer]);
 
 // Fix something that was already added.
 $paragraph->attr('class')->remove('section')->replace('paragraph', 'description');
@@ -79,7 +79,7 @@ The library comes with an HTML Builder class that allows you to quickly create H
 
 include 'vendor/autoload.php';
 
-$builder = new \drupol\htmltag\HtmlBuilder();
+$builder = new \Higgs\Html\HtmlBuilder();
 
 $html = $builder
     ->c(' Comment 1 ') // Add a comment
@@ -173,7 +173,7 @@ Method chaining:
 
 include 'vendor/autoload.php';
 
-$tag = \drupol\htmltag\HtmlTag::tag('body');
+$tag = \Higgs\Html\HtmlTag::tag('body');
 $tag
     ->attr('class', ['FRONT', ['NODE', ['sidebra']], 'node', '  a', '  b  ', [' c']])
     ->replace('sidebra', 'sidebar')
@@ -199,7 +199,7 @@ The following examples will all produce the same HTML.
 
 include 'vendor/autoload.php';
 
-$tag = \drupol\htmltag\HtmlTag::tag('body');
+$tag = \Higgs\Html\HtmlTag::tag('body');
 $tag->attr('class', ['front', ['node', ['sidebar']]]);
 $tag->content('Hello world');
 
@@ -211,7 +211,7 @@ echo $tag; // <body class="front node sidebar">Hello world</body>
 
 include 'vendor/autoload.php';
 
-$tag = \drupol\htmltag\HtmlTag::tag('body');
+$tag = \Higgs\Html\HtmlTag::tag('body');
 $tag->attr('class', 'front', 'node', 'sidebar');
 $tag->content('Hello world');
 
@@ -223,7 +223,7 @@ echo $tag; // <body class="front node sidebar">Hello world</body>
 
 include 'vendor/autoload.php';
 
-$tag = \drupol\htmltag\HtmlTag::tag('body');
+$tag = \Higgs\Html\HtmlTag::tag('body');
 $tag->attr('class', ['front', 'node', 'sidebar']);
 $tag->content('Hello world');
 
@@ -235,7 +235,7 @@ echo $tag; // <body class="front node sidebar">Hello world</body>
 
 include 'vendor/autoload.php';
 
-$tag = \drupol\htmltag\HtmlTag::tag('body');
+$tag = \Higgs\Html\HtmlTag::tag('body');
 $tag->attr('class', 'front node sidebar');
 $tag->content('Hello world');
 
@@ -249,7 +249,7 @@ echo $tag; // <body class="front node sidebar">Hello world</body>
 
 include 'vendor/autoload.php';
 
-$tag = \drupol\htmltag\HtmlTag::tag('body');
+$tag = \Higgs\Html\HtmlTag::tag('body');
 $tag->attr('class', 'front');
 $tag->content('Hello world');
 
@@ -263,7 +263,7 @@ echo $tag; // <body class="front">Hello world</body>
 
 include 'vendor/autoload.php';
 
-$attributes = \drupol\htmltag\HtmlTag::attributes();
+$attributes = \Higgs\Html\HtmlTag::attributes();
 $attributes->append('class', 'a', 'b', 'c');
 $attributes->append('id', 'htmltag');
 
@@ -278,7 +278,7 @@ echo $attributes; //  class="a b c" id="htmltag"
 
 include 'vendor/autoload.php';
 
-$attribute = \drupol\htmltag\HtmlTag::attribute('class', 'section');
+$attribute = \Higgs\Html\HtmlTag::attribute('class', 'section');
 
 echo $attribute; // class="section"
 ```
@@ -294,7 +294,7 @@ Ex: You want to have a special handling for the "class" attribute.
 
 include 'vendor/autoload.php';
 
-class MyCustomAttributeClass extends \drupol\htmltag\Attribute\Attribute {
+class MyCustomAttributeClass extends \Higgs\Html\Attribute\Attribute {
     /**
      * {@inheritdoc}
      */
@@ -315,7 +315,7 @@ class MyCustomAttributeClass extends \drupol\htmltag\Attribute\Attribute {
     }
 }
 
-\drupol\htmltag\Attribute\AttributeFactory::$registry['class'] = MyCustomAttributeClass::class;
+\Higgs\Html\Attribute\AttributeFactory::$registry['class'] = MyCustomAttributeClass::class;
 
 $tag = HtmlTag::tag('p');
 
