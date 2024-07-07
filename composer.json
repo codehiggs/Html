@@ -1,0 +1,14 @@
+{
+  "name": "codehiggs/Html",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "jalexiscv",
+      "email": "jalexiscv@gmail.com"
+    }
+  ],
+  "require": {
+  }
+}
