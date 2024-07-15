@@ -198,6 +198,48 @@ The following examples will all produce the same HTML.
 
 include 'vendor/autoload.php';
 
+$button = html()::tag('button');
+$button->attr('class', 'tabs-nav-link nav-link' . ($data['active'] ? ' active' : ''));
+$button->attr('id', $data['id'] . '-tab');
+$button->attr('data-bs-toggle', 'tab');
+$button->attr('data-bs-target', '#' . $data['id']);
+$button->attr('type', 'button');
+$button->attr('role', 'tab');
+$button->attr('aria-controls', $data['id']);
+$button->attr('aria-selected', $data['active'] ? 'true' : 'false');
+$button->content($data['text']);
+echo($button->render());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $tag = \Higgs\Html\HtmlTag::tag('body');
 $tag->attr('class', ['front', ['node', ['sidebar']]]);
 $tag->content('Hello world');

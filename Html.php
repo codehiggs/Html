@@ -1,49 +1,32 @@
 <?php
-/*
- * **
- *  ** █ ---------------------------------------------------------------------------------------------------------------------
- *  ** █ ░FRAMEWORK                                  2023-12-01 23:19:27
- *  ** █ ░█▀▀█ █▀▀█ █▀▀▄ █▀▀ ░█─░█ ─▀─ █▀▀▀ █▀▀▀ █▀▀ [App\Modules\Account\Views\Processes\Creator\deny.php]
- *  ** █ ░█─── █──█ █──█ █▀▀ ░█▀▀█ ▀█▀ █─▀█ █─▀█ ▀▀█ Copyright 2023 - CloudEngine S.A.S., Inc. <admin@cgine.com>
- *  ** █ ░█▄▄█ ▀▀▀▀ ▀▀▀─ ▀▀▀ ░█─░█ ▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀ Para obtener información completa sobre derechos de autor y licencia,
- *  ** █                                             consulte la LICENCIA archivo que se distribuyó con este código fuente.
- *  ** █ ---------------------------------------------------------------------------------------------------------------------
- *  ** █ EL SOFTWARE SE PROPORCIONA -TAL CUAL-, SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O
- *  ** █ IMPLÍCITA, INCLUYENDO PERO NO LIMITADO A LAS GARANTÍAS DE COMERCIABILIDAD,
- *  ** █ APTITUD PARA UN PROPÓSITO PARTICULAR Y NO INFRACCIÓN. EN NINGÚN CASO SERÁ
- *  ** █ LOS AUTORES O TITULARES DE LOS DERECHOS DE AUTOR SERÁN RESPONSABLES DE CUALQUIER
- *  ** █ RECLAMO, DAÑOS U OTROS RESPONSABILIDAD, YA SEA EN UNA ACCIÓN DE CONTRATO,
- *  ** █ AGRAVIO O DE OTRO MODO, QUE SURJA DESDE, FUERA O EN RELACIÓN CON EL SOFTWARE
- *  ** █ O EL USO U OTROS NEGOCIACIONES EN EL SOFTWARE.
- *  ** █ ---------------------------------------------------------------------------------------------------------------------
- *  ** █ @Author Jose Alexis Correa Valencia <jalexiscv@gmail.com>
- *  ** █ @link https://www.codehiggs.com
- *  ** █ @Version 1.5.0 @since PHP 7, PHP 8
- *  ** █ ---------------------------------------------------------------------------------------------------------------------
- *  ** █ Datos recibidos desde el controlador - @ModuleController
- *  ** █ ---------------------------------------------------------------------------------------------------------------------
- *  ** █ @authentication, @request, @dates, @parent, @component, @view, @oid, @views, @prefix
- *  ** █ ---------------------------------------------------------------------------------------------------------------------
- *  **
- */
-
 namespace Higgs\Html;
 
-use Higgs\Html\HtmlTag;
+use Higgs\Html\Attribute\AttributeFactory;
+use Higgs\Html\Attribute\AttributeInterface;
+use Higgs\Html\Attributes\AttributesFactory;
+use Higgs\Html\Attributes\AttributesInterface;
+use Higgs\Html\Tag\TagFactory;
 use Higgs\Html\Tag\TagInterface;
-use InvalidArgumentException;
 
 /**
  * Class HtmlTag.
- *   La existencia de esta clase implica:
- *   1). La modificación el archivo system/Common.php: Este archivo contiene funciones de ayuda globales. Se agrego una
- *       función helper para la clase Html: if (!function_exists('html')){function html(){return new \Higgs\Html\Html();}}
- *   2). La modificación de system/bootstrap.php: para la clase se cargue automáticamente al iniciar el sistema, se agrego
- *       esta línea al final del archivo: require_once SYSTEM_PATH . 'Html/Html.php';
- *
  */
-class Html
+final class Html implements HtmlTagInterface
 {
+    public static function attribute(string $name, $value): AttributeInterface
+    {
+        return AttributeFactory::build($name, $value);
+    }
+
+    public static function attributes(array $attributes = []): AttributesInterface
+    {
+        return AttributesFactory::build($attributes);
+    }
+
+    public static function tag(string $name, array $attributes = [], $content = null): TagInterface
+    {
+        return TagFactory::build($name, $attributes, $content);
+    }
 
     /**
      * Crea una instancia de la clase HtmlTag representando una etiqueta HTML 'div' con los atributos especificados.
